@@ -36,7 +36,17 @@ class DigitalBookofAnswers():
     #       question: the question the user wants to ask the digital book of answers
     # RETURNS: a string
     def check_get_answer(self, question):
-            
+        for i in range(len(self.questions_asked_list)):
+            if question == self.questions_asked_list[i]:
+                index_of_answer = self.answered_list[i]
+                return f"I've already answered this question. The answer is: {self.book_answer_list[index_of_answer]}" 
+        
+        while True:
+            index_of_answer = random.randint(0, len(self.book_answer_list) - 1)
+            if index_of_answer not in self.answered_list:
+                self.questions_asked_list.append(question)
+                self.answered_list.append(index_of_answer)
+                return self.book_answer_list[index_of_answer] 
 
     # Creates open_book method
     # ARGUMENTS:
