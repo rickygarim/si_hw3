@@ -72,6 +72,22 @@ class DigitalBookofAnswers():
     #       self: the curent object
     # RETURNS: a list
     def answer_log(self):
+        if not self.answered_list:
+            print("Empty")
+            return []
+        
+        frequency_dict = {}
+        for index in self.answered_list:
+            frequency_dict[index] = frequency_dict.get(index, 0) + 1
+
+        frequency_list = [
+            f"{count} - {self.book_answer_list[index].lower()}"
+            for index, count in frequency_dict.items()
+        ]
+
+        frequency_list.sort(key=lambda x: int(x.split(' - ')[0]), reverse=True)
+
+        return frequency_list
 
        
 def test():
